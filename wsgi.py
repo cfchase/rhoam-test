@@ -1,5 +1,5 @@
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, Response, jsonify, request
 from prediction import predict
 
 application = Flask(__name__)
@@ -9,6 +9,18 @@ application = Flask(__name__)
 @application.route('/status')
 def status():
     return jsonify({'status': 'ok'})
+
+
+@application.route('/openapi')
+def get_open_api_spec():
+    with open('openapi.json', 'r') as file:
+        spec = file.read()
+
+    response = Response(
+        response=spec,
+        mimetype='application/json'
+    )
+    return response
 
 
 @application.route('/predictions', methods=['POST'])

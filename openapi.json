@@ -1,0 +1,50 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Prediction API",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/predictions" : {
+      "post" : {
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PredictionData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Prediction"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "PredictionData" : {
+        "type" : "object",
+        "properties" : {}
+      },
+      "Prediction" : {
+        "type" : "object",
+        "properties" : {
+          "prediction" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
